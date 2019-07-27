@@ -1,0 +1,52 @@
+$cell_size: 70px;
+$cell_width_height: calc(4*$cell_size + $cell_size*0.1*4 + 40px);
+
+
+body {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #b2cfdd;
+  font-family: Helvetica, sans-serif;
+}
+
+html,
+body,
+.pizzule {
+  height: 100%;
+}
+
+.pizzule {
+
+  .btn {
+    margin: 50px;
+  }
+
+  .game {
+    margin: auto;
+    text-align: center;
+    line-height: $cell_size;
+    width: $cell_width_height;
+    height: $cell_width_height;
+
+    .cell {
+      width: $cell_size;
+      height: $cell_size;
+      margin-right: calc($cell_width_height*0.1);
+      border-radius: 4px;
+      margin-bottom: calc($cell_width_height *0.1);
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+      color: #333;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all .3s ease-in;
+      position: absolute;
+    }
+  }
+
+  .empty {
+    opacity: 0;
+  }
+}
