@@ -6,7 +6,14 @@ export default class Pizzule extends Component {
         super(props);
         this.state = {
             positions: _.shuffle(_.range(0, 16))
-        }
+        };
+        this.reshuffle = this.reshuffle.bind(this);
+    }
+
+    reshuffle() {
+        this.setState({
+            positions: _.shuffle(_.range(0, 16))
+        });
     }
 
     updateCellPosition(index) {
@@ -29,6 +36,7 @@ export default class Pizzule extends Component {
             }
         }
     }
+
     render() {
         const layout = _.range(0, 16).map(n => {
             const row = Math.floor(n / 4);
@@ -37,19 +45,25 @@ export default class Pizzule extends Component {
         });
         return (
             <div className="pizzule">
-                <button className="btn">
-                    reset
+                <button className="btn" onClick={this.reshuffle}>
+                    Reset
                 </button>
 
                 <div className="game">
-                    {this.state.positions.map((i, key) => {
-                        let cellClass = key ? "cell" : 'empty cell';
-                        let [x, y] = layout[this.state.positions.indexOf(key)];
-                        return <div key={key}
-                            className={cellClass}
-                            onClick={this.updateCellPosition.bind(this, key)}
-                            style={{ transform: `translate3d(${x}px,${y}px,0) scale(1.1)` }}>{key}</div>
-                    })}
+                    {
+                        this.state.positions.map((i, key) => {
+                            let cellClass = key ? "cell" : 'empty cell';
+                            let [x, y] = layout[this.state.positions.indexOf(key)];
+                            return (
+                                <div key={key}
+                                    className={cellClass}
+                                    onClick={this.updateCellPosition.bind(this, key)}
+                                    style={{ transform: `translate3d(${x}px,${y}px,0) scale(1.1)` }}>
+                                    {key}
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         );
